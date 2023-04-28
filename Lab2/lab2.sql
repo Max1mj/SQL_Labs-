@@ -23,7 +23,7 @@ WHERE region IN ('E','W','N') AND population > 150000 AND population < 350000
 ORDER BY name DESC;
 
 
-
+SELECT id,name,region,population
 FROM cities
 WHERE NOT region IN ('E','W')
 ORDER BY population DESC
