@@ -43,6 +43,7 @@ CREATE TABLE `ratings` (
   `comment` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `user_id` int(11) NOT NULL,
   `news_id` int(11) NOT NULL,
+  `ip` int(6) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_user_rating_per_news` (`user_id`,`news_id`),
   KEY `news_id` (`news_id`),
@@ -51,9 +52,17 @@ CREATE TABLE `ratings` (
   CONSTRAINT `check_mark_range` CHECK (`mark` >= 1 and `mark` <= 5)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-INSERT INTO `ratings` (`id`, `comment`, `mark`, `user_id`, `news_id`) VALUES
-(1, 'very bad', 1, 5, 1),
-(2, 'bad', 2, 4, 3),
-(3, 'decent', 3, 2, 2),
-(4, 'good', 4, 1, 4),
-(5, 'perfect', 5, 3, 5);
+INSERT INTO `ratings` (`id`, `comment`, `mark`, `user_id`, `news_id`, 'ip') VALUES
+(1, 'very bad', 1, 5, 1, 13576),
+(2, 'bad', 2, 4, 3, 56829),
+(3, 'decent', 3, 2, 2, 76529),
+(4, 'good', 4, 1, 4), 11097,
+(5, 'perfect', 5, 3, 5, 65278);
+
+DROP TABLE IF EXISTS 'categories';
+CREATE TABLE `categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
